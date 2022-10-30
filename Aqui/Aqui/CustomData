@@ -1,0 +1,177 @@
+//
+//  Data.swift
+//  Aqui
+//
+//  Created by Dara on 2022-10-24.
+//
+
+import Foundation
+
+// GeoCoding Data
+// MARK: - GeoDatum
+class CustomData {
+    
+    var unsplashAccessKey:String = ""
+    var openWeatherAccesKey:String = ""
+    var apiEndpoint:String = ""
+    var geoCodeEndpoint:String = ""
+    var shared = CustomData()
+    var endPoints:[(String,String)] = []
+    var cities = CityNames().cities
+    
+    init() {
+        shared = self
+        self.cities.sort()
+        unsplashAccessKey = "86BR-PI6jA3QbugU9EBaiIugnzDxx7MS1H9ejFAlVps"
+        openWeatherAccesKey = "33e1f41bba4a75c81313adfc371840c5"
+        apiEndpoint = "http://api.openweathermap.org/data/2.5/air_pollution?lat={lat}&lon={lon}&appid=\(openWeatherAccesKey)"
+        for city in self.cities {
+            endPoints.append((
+                "https://api.unsplash.com/search/photos/?client_id=\(unsplashAccessKey)&page=1&query=\(city)",
+                "http://api.openweathermap.org/geo/1.0/direct?q=\(city)&limit={limit}&appid=\(openWeatherAccesKey)"
+            ))
+        }
+    }
+    struct GeoDatum : Codable{
+        var name: String?
+        var localNames: LocalNames?
+        var lat, lon: Double?
+        var country: String?
+        var state: String?
+    }
+
+    // MARK: - LocalNames
+    struct LocalNames :Codable {
+        var af, ar: String?
+        var ascii: String?
+        var az, bg, ca, da: String?
+        var de, el: String?
+        var en: String?
+        var eu, fa: String?
+        var featureName: String?
+        var fi, fr, gl, he: String?
+        var hi, hr, hu, id: String?
+        var it, ja, la, lt: String?
+        var mk, nl, no, pl: String?
+        var pt, ro, ru, sk: String?
+        var sl, sr, th, tr: String?
+        var vi, zu: String?
+    }
+
+    // Air quality index data
+    // MARK: - AirData
+    struct AirData :Codable {
+        var coord: [Int]?
+        var list: [List]?
+    }
+
+    // MARK: - List
+    struct List :Codable {
+        var dt: Int?
+        var main: Main?
+        var components: [String: Double]?
+    }
+
+    // MARK: - Main
+    struct Main :Codable{
+        var aqi: Int?
+    }
+
+    //Image data
+
+    // MARK: - ImageData
+    struct ImageData : Codable {
+        var total, totalPages: Int?
+        var results: [ImageDataResult]?
+    }
+
+    // MARK: - Result
+    struct ImageDataResult :Codable {
+        var id: String?
+        var createdAt, updatedAt: Date?
+        var promotedAt: Date?
+        var width, height: Int?
+        var color, blurHash: String?
+        var resultDescription: String?
+        var altDescription: String?
+        var urls: Urls?
+        var links: ResultLinks?
+        var likes: Int?
+        var likedByUser: Bool?
+        var topicSubmissions: TopicSubmissions?
+        var user: User?
+        var tags: [Tag]?
+    }
+
+    // MARK: - ResultLinks
+    struct ResultLinks :Codable {
+        var linksSelf, html, download, downloadLocation: String?
+    }
+
+    // MARK: - Tag
+    struct Tag :Codable {
+        var type: TypeEnum?
+        var title: Title?
+    }
+
+    enum Title :Codable {
+        case canada
+        case vancouver
+    }
+
+    enum TypeEnum :Codable {
+        case search
+    }
+
+    // MARK: - TopicSubmissions
+    struct TopicSubmissions :Codable {
+        var wallpapers: Wallpapers?
+    }
+
+    // MARK: - Wallpapers
+    struct Wallpapers :Codable {
+        var status: String?
+    }
+
+    // MARK: - Urls
+    struct Urls :Codable {
+        var raw, full, regular, small: String?
+        var thumb, smallS3: String?
+    }
+
+    // MARK: - User
+    struct User :Codable{
+        var id: String?
+        var updatedAt: Date?
+        var username, name, firstName, lastName: String?
+        var twitterUsername: String?
+        var portfolioURL: String?
+        var bio, location: String?
+        var links: UserLinks?
+        var profileImage: ProfileImage?
+        var instagramUsername: String?
+        var totalCollections, totalLikes, totalPhotos: Int?
+        var acceptedTos, forHire: Bool?
+        var social: Social?
+    }
+
+    // MARK: - UserLinks
+    struct UserLinks :Codable{
+        var linksSelf, html, photos, likes: String?
+        var portfolio, following, followers: String?
+    }
+
+    // MARK: - ProfileImage
+    struct ProfileImage :Codable{
+        var small, medium, large: String?
+    }
+
+    // MARK: - Social
+    struct Social : Codable{
+        var instagramUsername: String?
+        var portfolioURL: String?
+        var twitterUsername: String?
+    }
+}
+
+

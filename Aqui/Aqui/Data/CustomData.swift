@@ -43,7 +43,22 @@ class CustomData {
         }
     }
 
-    
+    func makeEndpoint(city name:String) -> (String,String){
+        if(name.contains(" ")){
+            let cityName = name.replacingOccurrences(of: " ", with: "%20")
+            return(
+                "https://api.unsplash.com/search/photos/?client_id=\(unsplashAccessKey)&page=1&query=\(cityName)",
+                "http://api.openweathermap.org/geo/1.0/direct?q=\(cityName)&appid=\(openWeatherAccesKey)"
+            )
+        }else{
+            return(
+                "https://api.unsplash.com/search/photos/?client_id=\(unsplashAccessKey)&page=1&query=\(name)",
+                "http://api.openweathermap.org/geo/1.0/direct?q=\(name)&appid=\(openWeatherAccesKey)"
+            )
+            
+        }
+        return ("", "")
+    }
     // MARK: - GeoDatumElement
     struct GeoDatum : Codable {
         let name: String?

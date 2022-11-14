@@ -142,7 +142,7 @@ class SearchController: UIViewController , UISearchBarDelegate, UITableViewDeleg
              
              destination.o3 = "Trioxygen(O3) : \(String(describing: self.apiData[cellIndex!].list?[0].components?["o3"]))".replacingOccurrences(of: "Optional(", with: "")
              
-             destination.pm10 = "Particle Matter(PM10) : \( String(describing: self.apiData[cellIndex!].list?[0].components?["pm10"]))".replacingOccurrences(of: "Optional(", with: "").replacingOccurrences(of: ")", with: "")
+             destination.pm10 = "Particle Matter(PM10) : \( String(describing: self.apiData[cellIndex!].list?[0].components?["pm10"]))".replacingOccurrences(of: "Optional(", with: "")
          }
      }
      

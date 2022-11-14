@@ -9,6 +9,8 @@ import UIKit
 
 class SearchController: UIViewController , UISearchBarDelegate, UITableViewDelegate, UITableViewDataSource{
     func dataLoad(city name:String){
+        self.imageData = []
+        self.apiData = []
         let endpoints = customData.makeEndpoint(city: name)
         
         getImageData(for: endpoints.0, name)
@@ -22,12 +24,10 @@ class SearchController: UIViewController , UISearchBarDelegate, UITableViewDeleg
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "cell") as! TableViewCell
         cell.imagView.image = self.imageData[indexPath.row]
         cell.cityName.text = self.searchedCity
-        print(cell)
         return cell
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print(searchBar.text!)
         searchedCity = searchBar.text!
         dataLoad(city:searchBar.text!)
         self.view.endEditing(true)
@@ -47,7 +47,6 @@ class SearchController: UIViewController , UISearchBarDelegate, UITableViewDeleg
         tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
-    
     func makeApiCall(_ localGeoData:CustomData.GeoDatum) {
         let path = self.customData.apiEndpoint.replacingOccurrences(of: "{lat}", with: String((localGeoData.lat)!)).replacingOccurrences(of: "{lon}", with: String((localGeoData.lon)!))
         guard let url = URL(string: path) else {print("HEREE");return}
@@ -67,7 +66,6 @@ class SearchController: UIViewController , UISearchBarDelegate, UITableViewDeleg
         }
         dataTask.resume()
     }
-    
     func getImageData(for city:String,_ name:String){
         guard let url = URL(string: city) else {return}
         let dataTask = URLSession.shared.dataTask(with: URLRequest(url: url)){ (data, response, error) in
@@ -84,7 +82,6 @@ class SearchController: UIViewController , UISearchBarDelegate, UITableViewDeleg
                                 if let data = data {
                                     let image = UIImage(data: data)
                                     DispatchQueue.main.async  {
-                                        print(self.imageData)
                                         self.imageData.append(image!)
                                     }
                                 }
@@ -102,7 +99,6 @@ class SearchController: UIViewController , UISearchBarDelegate, UITableViewDeleg
         }
         dataTask.resume()
     }
-    
     func getCoordData(for url:String){
         guard let url = URL(string: url) else {return}
         
@@ -125,15 +121,31 @@ class SearchController: UIViewController , UISearchBarDelegate, UITableViewDeleg
     }
     
     
-    /*
+    
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
      override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
+         if(segue.identifier == "detailed"){
+             let destination = segue.destination as! DetailedViewController
+          let cellIndex = self.tableView.indexPathForSelectedRow?.row
+             destination.localImage = self.imageData[cellIndex!]
+             destination.cityNameText = self.searchedCity
+             destination.co = "Carbon Monoxide(CO) : \( String(describing: self.apiData[cellIndex!].list?[0].components?["co"]))".replacingOccurrences(of: "Optional(", with: "")
+             destination.pm25 = "Particle Matter(PM2.5) : \( String(describing: self.apiData[cellIndex!].list?[0].components?["pm2_5"]))".replacingOccurrences(of: "Optional(", with: "")
+             destination.no2 = "Nitrogren Dioxide(NO2) : \(String(describing: self.apiData[cellIndex!].list?[0].components?["no2"]))".replacingOccurrences(of: "Optional(", with: "")
+             destination.no = "Nitric Oxide(NO) : \(String(describing: self.apiData[cellIndex!].list?[0].components?["no"]))".replacingOccurrences(of: "Optional(", with: "")
+             destination.nh3 = "Ammonia(NH3) : \(String(describing: self.apiData[cellIndex!].list?[0].components?["nh3"]))".replacingOccurrences(of: "Optional(", with: "")
+             destination.so2 = "Sulfur Dioxide(SO2) : \( String(describing: self.apiData[cellIndex!].list?[0].components?["so2"]))".replacingOccurrences(of: "Optional(", with: "")
+             
+             destination.o3 = "Trioxygen(O3) : \(String(describing: self.apiData[cellIndex!].list?[0].components?["o3"]))".replacingOccurrences(of: "Optional(", with: "")
+             
+             destination.pm10 = "Particle Matter(PM10) : \( String(describing: self.apiData[cellIndex!].list?[0].components?["pm10"]))".replacingOccurrences(of: "Optional(", with: "").replacingOccurrences(of: ")", with: "")
+         }
      }
-     */
+     
     
 }
 extension Dictionary{

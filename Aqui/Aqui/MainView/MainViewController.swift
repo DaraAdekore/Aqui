@@ -10,11 +10,15 @@ import Combine
 class MainViewController: UICollectionViewController {
     
     
+    @IBOutlet weak var navBar: UINavigationItem!
     @IBOutlet var tileView: UICollectionView!
-    
-    
+      
     @IBAction func toSearch(_ sender: Any) {
         let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "search") as! SearchController
+        self.navigationController?.pushViewController(storyboard, animated: true)
+    }
+    @objc func buttonTappedAction(){
+        let storyboard = self.storyboard?.instantiateViewController(withIdentifier: "question") as! questionViewController
         self.navigationController?.pushViewController(storyboard, animated: true)
     }
     var customData = CustomData()
@@ -27,6 +31,9 @@ class MainViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navBar.leftBarButtonItem =
+        UIBarButtonItem(
+            title: "?", style: .plain, target: self, action: #selector(buttonTappedAction))
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         dataLoad()
@@ -69,8 +76,6 @@ class MainViewController: UICollectionViewController {
                     self.apiData[localGeoData.name!] = try! JSONDecoder().decode(CustomData.AirData.self, from: data)
                     if(index+1 == self.customData.endPoints.count){
                         DispatchQueue.main.async {
-                            print(self.sortedApi)
-                            print(self.sortedImage)
                             self.sortedApi = self.apiData.sorted(by: {$0.key < $1.key})
                             self.sortedImage = self.imageData.sorted(by: {$0.key < $1.key})
                             self.tileView.reloadData()

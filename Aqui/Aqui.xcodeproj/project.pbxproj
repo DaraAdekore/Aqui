@@ -20,6 +20,7 @@
 		47B584942921DF8A00B0627B /* questionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B584932921DF8A00B0627B /* questionViewController.swift */; };
 		47F37C47292057DE006CDAE9 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F37C46292057DE006CDAE9 /* SearchController.swift */; };
 		47FA51DE292183A400027429 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FA51DD292183A400027429 /* DetailedViewController.swift */; };
+		7879555943BA5B1C8585F1BA /* Pods_Aqui.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69500C35F2613C9708E56961 /* Pods_Aqui.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,9 @@
 		47B584932921DF8A00B0627B /* questionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = questionViewController.swift; sourceTree = "<group>"; };
 		47F37C46292057DE006CDAE9 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		47FA51DD292183A400027429 /* DetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
+		69500C35F2613C9708E56961 /* Pods_Aqui.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Aqui.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9326C4E0F12FBED3B32419BC /* Pods-Aqui.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aqui.debug.xcconfig"; path = "Target Support Files/Pods-Aqui/Pods-Aqui.debug.xcconfig"; sourceTree = "<group>"; };
+		A94F5F5CAD79C22DFE2327D4 /* Pods-Aqui.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Aqui.release.xcconfig"; path = "Target Support Files/Pods-Aqui/Pods-Aqui.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +49,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7879555943BA5B1C8585F1BA /* Pods_Aqui.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0806200463319E8CBCB319F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				69500C35F2613C9708E56961 /* Pods_Aqui.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		176D7EEF290752850074ABBB = {
 			isa = PBXGroup;
 			children = (
 				176D7EFA290752850074ABBB /* Aqui */,
 				176D7EF9290752850074ABBB /* Products */,
+				606C55DF1E2F30602C81EF82 /* Pods */,
+				0806200463319E8CBCB319F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -112,6 +127,16 @@
 			path = DetailedView;
 			sourceTree = "<group>";
 		};
+		606C55DF1E2F30602C81EF82 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9326C4E0F12FBED3B32419BC /* Pods-Aqui.debug.xcconfig */,
+				A94F5F5CAD79C22DFE2327D4 /* Pods-Aqui.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -119,6 +144,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 176D7F0C290752890074ABBB /* Build configuration list for PBXNativeTarget "Aqui" */;
 			buildPhases = (
+				BDB95D8AE43CE85C63397589 /* [CP] Check Pods Manifest.lock */,
 				176D7EF4290752850074ABBB /* Sources */,
 				176D7EF5290752850074ABBB /* Frameworks */,
 				176D7EF6290752850074ABBB /* Resources */,
@@ -177,6 +203,31 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BDB95D8AE43CE85C63397589 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Aqui-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		176D7EF4290752850074ABBB /* Sources */ = {
@@ -268,7 +319,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -322,7 +373,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -334,19 +385,24 @@
 		};
 		176D7F0D290752890074ABBB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9326C4E0F12FBED3B32419BC /* Pods-Aqui.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GW474U252V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Aqui/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Aqui;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,6 +410,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dara.aqui.Aqui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -362,19 +419,24 @@
 		};
 		176D7F0E290752890074ABBB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A94F5F5CAD79C22DFE2327D4 /* Pods-Aqui.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GW474U252V;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Aqui/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Aqui;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,6 +444,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dara.aqui.Aqui;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

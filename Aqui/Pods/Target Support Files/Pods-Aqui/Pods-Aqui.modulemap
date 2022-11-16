@@ -1,0 +1,6 @@
+framework module Pods_Aqui {
+  umbrella header "Pods-Aqui-umbrella.h"
+
+  export *
+  module * { export * }
+}
